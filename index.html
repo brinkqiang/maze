@@ -10,6 +10,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 0;
+      padding: 20px;
     }
     #maze {
       border: 2px solid #000;
@@ -32,8 +34,20 @@
     .player {
       background: blue;
     }
+    .path {
+      background: rgba(255, 215, 0, 0.3);
+    }
     #controls {
       margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .control-group {
+      display: flex;
+      gap: 5px;
+      align-items: center;
     }
   </style>
 </head>
@@ -41,9 +55,17 @@
   <h1>随机迷宫小游戏</h1>
   <div id="maze"></div>
   <div id="controls">
-    <label for="speed">移动速度(ms): </label>
-    <input type="number" id="speed" value="500" min="50" max="2000">
+    <div class="control-group">
+      <label for="speed">移动速度(ms):</label>
+      <input type="number" id="speed" value="500" min="50" max="2000">
+    </div>
+    <div class="control-group">
+      <label for="size">迷宫大小:</label>
+      <input type="number" id="size" value="10" min="5" max="30">
+      <button onclick="updateMazeSize()">应用</button>
+    </div>
     <button id="start">开始游戏</button>
+    <button id="showPath" onclick="showSolution()">显示路径</button>
   </div>
   <script src="maze.js"></script>
 </body>
