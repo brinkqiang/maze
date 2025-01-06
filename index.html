@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>随机迷宫小游戏</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #maze {
+      border: 2px solid #000;
+      display: grid;
+    }
+    .cell {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ddd;
+    }
+    .wall {
+      background: #000;
+    }
+    .start {
+      background: green;
+    }
+    .end {
+      background: red;
+    }
+    .player {
+      background: blue;
+    }
+    #controls {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>随机迷宫小游戏</h1>
+  <div id="maze"></div>
+  <div id="controls">
+    <label for="speed">移动速度(ms): </label>
+    <input type="number" id="speed" value="500" min="50" max="2000">
+    <button id="start">开始游戏</button>
+  </div>
+  <script src="maze.js"></script>
+</body>
+</html>
