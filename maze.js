@@ -5,20 +5,36 @@ const startButton = document.getElementById("start");
 const sizeInput = document.getElementById("size");
 let maze = [];
 let playerPos = { x: 0, y: 0 };
-let rows = 10; // 默认迷宫行数
-let cols = 10; // 默认迷宫列数
+let rows = 20; // 默认迷宫行数
+let cols = 20; // 默认迷宫列数
 let cellSize = 20;
 let currentSolution = null; // 存储当前解决方案
 let currentInterval = null; // 存储当前定时器
 
 // 更新迷宫大小
 function updateMazeSize() {
+  // 停止当前运行的定时器
+  if (currentInterval) {
+    clearInterval(currentInterval);
+    currentInterval = null;
+  }
+  
+  // 重置玩家位置
+  document.querySelector("player")?.classList.remove("player");
+  
+  // 清除路径显示
+  const cells = mazeContainer.querySelectorAll('.cell');
+  cells.forEach(cell => cell.classList.remove('path'));
+  
   const newSize = parseInt(sizeInput.value);
   if (newSize >= 5 && newSize <= 50) {
     rows = cols = newSize;
     maze = generateMaze(rows, cols);
     drawMaze(maze);
     currentSolution = null; // 重置解决方案
+    
+    // 重置玩家到起点
+    mazeContainer.children[0].classList.add("player");
   } else {
     alert("迷宫大小必须在5到50之间");
     sizeInput.value = rows; // 恢复原值
@@ -216,16 +232,7 @@ startButton.addEventListener("click", () => {
 
 // 监听迷宫大小变化
 sizeInput.addEventListener("change", () => {
-  const newSize = parseInt(sizeInput.value);
-  if (newSize >= 5 && newSize <= 50) {
-    rows = cols = newSize;
-    maze = generateMaze(rows, cols);
-    drawMaze(maze);
-    currentSolution = null; // 重置解决方案
-  } else {
-    alert("迷宫大小必须在5到50之间");
-    sizeInput.value = rows; // 恢复原值
-  }
+
 });
 
 // 初始化
